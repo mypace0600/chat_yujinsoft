@@ -45,7 +45,19 @@ const AuthForm = () =>{
         }
 
         if(variant === 'LOGIN'){
-            signIn()
+            signIn('credentials',{
+                ...data,
+                redirect:false
+            })
+            .then((callback)=>{
+                if(callback?.error){
+                    toast.error('Invalid Credentials');
+                }
+                if(callback?.ok && !callback?.error){
+                    toast.success('Logged in');
+                }
+            })
+            .finally(()=>setIsLoading(false))
         }
     }
 
