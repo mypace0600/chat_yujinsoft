@@ -7,6 +7,8 @@ import { FieldValue, FieldValues, SubmitHandler, useForm } from "react-hook-form
 import AuthSocialButton from "./AuthSocialButton";
 import { BsGithub,BsGoogle} from 'react-icons/bs'
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react"
 type Variant = 'LOGIN' | 'REGISTER';
 const AuthForm = () =>{
     const [variant, setVariant] = useState<Variant>('LOGIN');
@@ -38,10 +40,12 @@ const AuthForm = () =>{
         setIsLoading(true);
         if(variant === 'REGISTER'){
             axios.post('/api/register',data)
+            .catch(()=> toast.error('Something went wrong!'))
+            .finally(()=> setIsLoading(false))
         }
 
         if(variant === 'LOGIN'){
-            // nextauth sign in
+            signIn()
         }
     }
 
