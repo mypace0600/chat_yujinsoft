@@ -1,7 +1,7 @@
 'use client';
 
 import Button from "@/app/components/Button";
-import Input from "@/app/components/Input/Input";
+import Input from "@/app/components/input/Input";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValue, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import AuthSocialButton from "./AuthSocialButton";
